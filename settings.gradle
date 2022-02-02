@@ -17,17 +17,17 @@ rootProject.name = 'micrometer'
 
 buildCache {
     remote(HttpBuildCache) {
-        //url = 'https://ge.micrometer.io/cache/'
-        url = 'http://localhost:5086/cache/'
+        url = 'https://ge.micrometer.io/cache/'
+        //url = 'http://localhost:5086/cache/'
     }
 }
 gradleEnterprise {
-    //server = 'https://ge.micrometer.io'
-    server = 'localhost:5086'
+    server = 'https://ge.micrometer.io'
+    //server = 'localhost:5086'
 
-    capture {
-        taskInputFiles = true
-    }
+//    capture {
+//        taskInputFiles = true
+//    }
 }
 
 include 'micrometer-core'
