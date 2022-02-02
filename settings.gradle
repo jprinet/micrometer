@@ -16,18 +16,20 @@ plugins {
 rootProject.name = 'micrometer'
 
 buildCache {
+    local { enabled = false }
     remote(HttpBuildCache) {
-        url = 'https://ge.micrometer.io/cache/'
-        //url = 'http://localhost:5086/cache/'
+        //url = 'https://ge.micrometer.io/cache/'
+        url = 'https://cache-node-solutions.grdev.net/cache/exp4/'
+        push = true
+        credentials {
+            username = System.getenv("GRADLE_ENTERPRISE_CACHE_USERNAME")
+            password = System.getenv("GRADLE_ENTERPRISE_CACHE_PASSWORD")
+        }
     }
 }
 gradleEnterprise {
-    server = 'https://ge.micrometer.io'
-    //server = 'localhost:5086'
-
-//    capture {
-//        taskInputFiles = true
-//    }
+    //server = 'https://ge.micrometer.io'
+    server = 'https://ge.solutions-team.gradle.com'
 }
 
 include 'micrometer-core'
