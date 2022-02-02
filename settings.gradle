@@ -10,17 +10,24 @@ pluginManagement {
 plugins {
     id 'com.gradle.enterprise' version '3.8.1'
     id 'io.spring.ge.conventions' version '0.0.9'
+    id 'com.gradle.common-custom-user-data-gradle-plugin' version '1.6.2'
 }
 
 rootProject.name = 'micrometer'
 
 buildCache {
     remote(HttpBuildCache) {
-        url = 'https://ge.micrometer.io/cache/'
+        //url = 'https://ge.micrometer.io/cache/'
+        url = 'http://localhost:5086/cache/'
     }
 }
 gradleEnterprise {
-    server = 'https://ge.micrometer.io'
+    //server = 'https://ge.micrometer.io'
+    server = 'localhost:5086'
+
+    capture {
+        taskInputFiles = true
+    }
 }
 
 include 'micrometer-core'
