@@ -19,7 +19,7 @@ buildCache {
     local { enabled = false }
     remote(HttpBuildCache) {
         //url = 'https://ge.micrometer.io/cache/'
-        url = 'https://cache-node-solutions.grdev.net/cache/exp5/'
+        url = 'https://cache-node-solutions.grdev.net/cache/exp5-2/'
         push = true
         credentials {
             username = System.getenv("GRADLE_ENTERPRISE_CACHE_USERNAME")
