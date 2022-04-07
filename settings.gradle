@@ -15,6 +15,9 @@ plugins {
 rootProject.name = 'micrometer'
 
 buildCache {
+    local {
+
+    }
     remote(HttpBuildCache) {
         url = 'https://ge.micrometer.io/cache/'
     }

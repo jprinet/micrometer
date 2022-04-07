@@ -391,3 +391,34 @@ wrapper {
 }
 
 defaultTasks 'build'
+
+def fingerprinter = services.get(org.gradle.internal.fingerprint.classpath.ClasspathFingerprinter)
+tasks.getByPath(':micrometer-samples-hazelcast3:test').configure { task ->
+    doFirst {
+        println "configuring fingerprinting"
+//        task.getStableClasspath().getFiles().forEach { entry ->
+            //entry.files.forEach { f ->
+//                println "${task.path}:${entry.name}"
+//                println "${fingerprinter.fingerprint(entry).hash}"
+            //}
+//        }
+        task.stableClasspath.forEach { entry ->
+//            println entry.absolutePath
+//            println "${fingerprinter.fingerprint(files(entry.absolutePath)).hash}"
+            buildScan.value "${entry.absolutePath}", "${fingerprinter.fingerprint(files(entry.absolutePath)).hash}"
+        }
+
+//        ClassLoader classLoader = task.getClass().classLoader
+//        while (classLoader instanceof URLClassLoader) {
+//            def fingerprints = [] as Set
+//            def allFiles = [] as Set
+//            classLoader.getURLs().each {
+//                fingerprints.add(["${task.path}:${file(it.file).name}", "${fingerprinter.fingerprint(files(it.file)).hash}"])
+//                allFiles.add(file(it.file))
+//            }
+//            //fingerprints.each { println "${it[0]} = ${it[1]}" }//buildScan.value it[0], it[1] }
+//            buildScan.value "${task.path}:classpath", allFiles.join("\n")
+//            classLoader = classLoader.parent
+//        }
+    }
+}
